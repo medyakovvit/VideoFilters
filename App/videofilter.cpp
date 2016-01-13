@@ -8,7 +8,7 @@ VideoFilter::VideoFilter() :
 
 void VideoFilter::setNextFilter(VideoFilter *filter)
 {
-    if(*m_next == *filter)
+    if (!filter)
         return;
 
     m_next = filter;

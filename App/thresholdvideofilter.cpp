@@ -6,3 +6,18 @@ ThresholdVideoFilter::ThresholdVideoFilter() :
 {
 
 }
+
+void ThresholdVideoFilter::filter(Data *)
+{
+    return;
+}
+
+QList<Data::DataType> ThresholdVideoFilter::supportedInDataTypes()
+{
+    return QList<Data::DataType>() << Data::CV_MAT;
+}
+
+QList<Data::DataType> ThresholdVideoFilter::supportedOutDataTypes()
+{
+    return QList<Data::DataType>() << Data::CV_MAT;
+}

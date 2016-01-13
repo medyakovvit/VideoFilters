@@ -1,11 +1,14 @@
+include(../IncludeOpenCV.pri)
+
 TEMPLATE = app
 
 QT += qml quick widgets
 
 SOURCES += main.cpp \
-    request.cpp \
     videofilter.cpp \
-    thresholdvideofilter.cpp
+    thresholdvideofilter.cpp \
+    data.cpp \
+    matdata.cpp
 
 RESOURCES += qml.qrc
 
@@ -16,7 +19,8 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    request.h \
     videofilter.h \
-    thresholdvideofilter.h
+    thresholdvideofilter.h \
+    data.h \
+    matdata.h
 
