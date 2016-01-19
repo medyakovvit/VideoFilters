@@ -8,7 +8,8 @@ class Data
 public:
 
     enum DataType{
-        CV_MAT = 0,
+        CV_MAT_8UC1 = 0,
+        CV_MAT_8UC3,
         CV_RECT
     };
 
