@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     videofilter.cpp \
     thresholdvideofilter.cpp \
     data.cpp \
-    matdata.cpp
+    matdata.cpp \
+    rgb2grayvideofilter.cpp
 
 RESOURCES += qml.qrc
 
@@ -22,5 +23,6 @@ HEADERS += \
     videofilter.h \
     thresholdvideofilter.h \
     data.h \
-    matdata.h
+    matdata.h \
+    rgb2grayvideofilter.h
 
