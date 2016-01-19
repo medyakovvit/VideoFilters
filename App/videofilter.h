@@ -9,7 +9,8 @@ public:
     VideoFilter();
 
     VideoFilter* getNextFilter(){return m_next;}
-    void setNextFilter(VideoFilter*);
+    bool connectTo(VideoFilter*);
+    virtual Data* getData() = 0;
 
     virtual void filter(Data* ) = 0;
     virtual QList<Data::DataType> supportedInDataTypes() = 0;

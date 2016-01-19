@@ -6,11 +6,19 @@ VideoFilter::VideoFilter() :
 
 }
 
-void VideoFilter::setNextFilter(VideoFilter *filter)
+bool VideoFilter::connectTo(VideoFilter *filter)
 {
     if (!filter)
-        return;
+        return false;
 
-    m_next = filter;
+    QList<Data::DataType> nextInTypesList = filter->supportedInDataTypes();
+    QList<Data::DataType> currentOutTypesList = this->supportedOutDataTypes();
+
+    foreach (Data::DataType type, nextInTypesList) {
+        if(currentOutTypesList.contains(type))
+            return true;
+    }
+
+    return false;
 }
 
