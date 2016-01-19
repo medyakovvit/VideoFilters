@@ -11,6 +11,7 @@ public:
     MatData();
 
     cv::Mat getMat(){return m_image;}
+    void setMat(cv::Mat& image);
     // Data interface
 public:
     QList<DataType> dataTypes();
