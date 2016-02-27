@@ -1,6 +1,7 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 import QtMultimedia 5.5
+import QtQuick.Layouts 1.1
 
 import my.filters 1.0
 
@@ -24,12 +25,6 @@ ApplicationWindow {
         }
     }
 
-    VideoOutput{
-        source: camera
-        filters: [rgb2GrayFilter, thresholdFilter]
-        anchors.fill: parent
-    }
-
     Camera{
         id: camera
     }
@@ -43,12 +38,21 @@ ApplicationWindow {
         threshold: threshSlider.value
     }
 
-    Slider{
-        id: threshSlider
-        maximumValue: 255.0
-        minimumValue: 0.0
-        value: 150.0
-        stepSize: 1.0
+    ColumnLayout{
+
+        Slider{
+            id: threshSlider
+            maximumValue: 255.0
+            minimumValue: 0.0
+            value: 150.0
+            stepSize: 1.0
+        }
+
+        VideoOutput{
+            source: camera
+            filters: [rgb2GrayFilter, thresholdFilter]
+            anchors.fill: parent
+        }
     }
 }
 
