@@ -1,60 +1,43 @@
 #include "thresholdvideofilter.h"
 
-#include "opencv2/imgproc.hpp"
+#include <opencv2/imgproc.hpp>
+#include <QDebug>
 
-ThresholdVideoFilter::ThresholdVideoFilter() :
-    m_threshold(0.0),
-    m_maxValue(255.0)
+ThresholdVideoFilter::ThresholdVideoFilter(QObject *parent) :
+    VideoFilter(parent), m_threshold(0.0)
 {
 
+}
+
+QVideoFilterRunnable *ThresholdVideoFilter::createFilterRunnable()
+{
+    if(!p_runnable)
+        p_runnable = new ThresholdRunnable(m_threshold);
+
+    return p_runnable;
+}
+
+double ThresholdVideoFilter::threshold()
+{
+    if(!p_runnable)
+        return 0.0;
+
+    ThresholdRunnable *pR = static_cast<ThresholdRunnable*>(p_runnable);
+    return pR->threshold();
 }
 
 void ThresholdVideoFilter::setThreshold(double threshold)
 {
-    if(m_threshold == threshold)
-        return;
-
-    m_threshold = threshold;
-}
-
-void ThresholdVideoFilter::filter(Data *data)
-{
-    cv::Mat thresholded;
-
-    if (!data)
+    if(!p_runnable)
     {
-        m_data.setMat(thresholded);
+        m_threshold = threshold;
         return;
     }
 
-    MatData* matData = static_cast<MatData*>(data);
-    cv::Mat image = matData->getMat();
-
-    if(image.empty())
-    {
-        m_data.setMat(thresholded);
+    ThresholdRunnable *pR = static_cast<ThresholdRunnable*>(p_runnable);
+    if(threshold == pR->threshold())
         return;
-    }
 
-    if(image.type() != CV_8UC1)
-    {
-        m_data.setMat(thresholded);
-        return;
-    }
-
-    cv::threshold(image, thresholded, this->m_threshold, 255.0, cv::THRESH_BINARY);
-
-    m_data.setMat(thresholded);
-
-    return;
-}
-
-QList<Data::DataType> ThresholdVideoFilter::supportedInDataTypes()
-{
-    return QList<Data::DataType>() << Data::CV_MAT_8UC1;
-}
-
-QList<Data::DataType> ThresholdVideoFilter::supportedOutDataTypes()
-{
-    return QList<Data::DataType>() << Data::CV_MAT_8UC1;
+    pR->setThreshold(threshold);
+    emit thresholdChanged(threshold);
 }

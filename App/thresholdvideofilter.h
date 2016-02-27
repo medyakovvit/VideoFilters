@@ -2,27 +2,30 @@
 #define THRESHOLDVIDEOFILTER_H
 
 #include "videofilter.h"
-#include "matdata.h"
+#include "thresholdrunnable.h"
 
 class ThresholdVideoFilter : public VideoFilter
 {
-public:
-    ThresholdVideoFilter();
+    Q_OBJECT
+    Q_PROPERTY(double threshold READ threshold WRITE setThreshold NOTIFY thresholdChanged)
 
-    double threshold(){return m_threshold;}
+public:
+    ThresholdVideoFilter(QObject *parent=0);
+
+    QVideoFilterRunnable *createFilterRunnable();
+
+    double threshold();
+
+public slots:
     void setThreshold(double threshold);
 
-    // VideoFilter interface
-public:
-    void filter(Data *);
-    Data* getData(){return &m_data;}
-    QList<Data::DataType> supportedInDataTypes();
-    QList<Data::DataType> supportedOutDataTypes();
+signals:
+    void finished(QObject *result);
+    void thresholdChanged(double threshold);
 
 protected:
     double m_threshold;
-    double m_maxValue;
-    MatData m_data;
+
 };
 
 #endif // THRESHOLDVIDEOFILTER_H

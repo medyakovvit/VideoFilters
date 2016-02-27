@@ -1,5 +1,8 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
+import QtMultimedia 5.5
+
+import my.filters 1.0
 
 ApplicationWindow {
     visible: true
@@ -21,9 +24,31 @@ ApplicationWindow {
         }
     }
 
-    Label {
-        text: qsTr("Hello World")
-        anchors.centerIn: parent
+    VideoOutput{
+        source: camera
+        filters: [rgb2GrayFilter, thresholdFilter]
+        anchors.fill: parent
+    }
+
+    Camera{
+        id: camera
+    }
+
+    Rgb2GrayFilter{
+        id: rgb2GrayFilter
+    }
+
+    ThresholdFilter{
+        id: thresholdFilter
+        threshold: threshSlider.value
+    }
+
+    Slider{
+        id: threshSlider
+        maximumValue: 255.0
+        minimumValue: 0.0
+        value: 150.0
+        stepSize: 1.0
     }
 }
 

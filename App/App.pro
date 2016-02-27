@@ -2,14 +2,16 @@ include(../IncludeOpenCV.pri)
 
 TEMPLATE = app
 
-QT += qml quick widgets
+QT += qml quick widgets multimedia
 
 SOURCES += main.cpp \
     videofilter.cpp \
     thresholdvideofilter.cpp \
     data.cpp \
     matdata.cpp \
-    rgb2grayvideofilter.cpp
+    rgb2grayvideofilter.cpp \
+    rgb2grayrunnable.cpp \
+    thresholdrunnable.cpp
 
 RESOURCES += qml.qrc
 
@@ -24,5 +26,7 @@ HEADERS += \
     thresholdvideofilter.h \
     data.h \
     matdata.h \
-    rgb2grayvideofilter.h
+    rgb2grayvideofilter.h \
+    rgb2grayrunnable.h \
+    thresholdrunnable.h
 

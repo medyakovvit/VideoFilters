@@ -1,23 +1,18 @@
 #ifndef VIDEOFILTER_H
 #define VIDEOFILTER_H
 
-#include "data.h"
+#include <QAbstractVideoFilter>
 
-class VideoFilter
+class VideoFilter : public QAbstractVideoFilter
 {
+    Q_OBJECT
+
 public:
-    VideoFilter();
-
-    VideoFilter* getNextFilter(){return m_next;}
-    bool connectTo(VideoFilter*);
-    virtual Data* getData() = 0;
-
-    virtual void filter(Data* ) = 0;
-    virtual QList<Data::DataType> supportedInDataTypes() = 0;
-    virtual QList<Data::DataType> supportedOutDataTypes() = 0;
+    VideoFilter(QObject *parent = 0);
+    virtual ~VideoFilter();
 
 protected:
-    VideoFilter* m_next;
+    QVideoFilterRunnable *p_runnable;
 };
 
 #endif // VIDEOFILTER_H

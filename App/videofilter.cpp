@@ -1,24 +1,17 @@
 #include "videofilter.h"
 
-VideoFilter::VideoFilter() :
-    m_next(NULL)
+VideoFilter::VideoFilter(QObject *parent) : QAbstractVideoFilter(parent),
+    p_runnable(0)
 {
 
 }
 
-bool VideoFilter::connectTo(VideoFilter *filter)
+VideoFilter::~VideoFilter()
 {
-    if (!filter)
-        return false;
-
-    QList<Data::DataType> nextInTypesList = filter->supportedInDataTypes();
-    QList<Data::DataType> currentOutTypesList = this->supportedOutDataTypes();
-
-    foreach (Data::DataType type, nextInTypesList) {
-        if(currentOutTypesList.contains(type))
-            return true;
+    if(p_runnable)
+    {
+        delete p_runnable;
+        p_runnable = 0;
     }
-
-    return false;
 }
 
