@@ -29,29 +29,37 @@ ApplicationWindow {
         id: camera
     }
 
-    Rgb2GrayFilter{
-        id: rgb2GrayFilter
-    }
-
-    ThresholdFilter{
-        id: thresholdFilter
-        threshold: threshSlider.value
+    FiltersModel{
+        id: filtersModel
     }
 
     ColumnLayout{
+        anchors.fill: parent
 
-        Slider{
-            id: threshSlider
-            maximumValue: 255.0
-            minimumValue: 0.0
-            value: 150.0
-            stepSize: 1.0
+        RowLayout{
+
+            Slider{
+                id: threshSlider
+                maximumValue: 255.0
+                minimumValue: 0.0
+                value: 150.0
+                stepSize: 1.0
+
+                height: 30
+            }
+
+            Button{
+                id: btnAddFilter
+                text: qsTr("Add Threshold")
+
+                onClicked: filtersModel.addFilter()
+            }
         }
 
         VideoOutput{
+            id: vo
             source: camera
-            filters: [rgb2GrayFilter, thresholdFilter]
-            anchors.fill: parent
+            filters: filtersModel.filters
         }
     }
 }
