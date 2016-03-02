@@ -2,8 +2,20 @@
 
 #include "opencv2/imgproc/imgproc.hpp"
 
-RGB2GrayVideoFilter::RGB2GrayVideoFilter(QObject *parent) : QAbstractVideoFilter(parent)
+#include <QDebug>
+
+RGB2GrayVideoFilter::RGB2GrayVideoFilter(QString name, QObject *parent) : VideoFilter(name, parent)
 {
 
+}
+
+QVideoFilterRunnable *RGB2GrayVideoFilter::createFilterRunnable()
+{
+    qDebug() << "RGB2GrayVideoFilter::createFilterRunnable()";
+
+//    if(!p_runnable)
+//        p_runnable = new Rgb2GrayRunnable;
+
+    return p_runnable = new Rgb2GrayRunnable;
 }
 

@@ -10,7 +10,7 @@ class ThresholdVideoFilter : public VideoFilter
     Q_PROPERTY(double threshold READ threshold WRITE setThreshold NOTIFY thresholdChanged)
 
 public:
-    ThresholdVideoFilter(QObject *parent=0);
+    ThresholdVideoFilter(QString name, QObject *parent=0);
 
     QVideoFilterRunnable *createFilterRunnable();
 

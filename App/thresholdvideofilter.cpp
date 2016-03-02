@@ -3,18 +3,21 @@
 #include <opencv2/imgproc.hpp>
 #include <QDebug>
 
-ThresholdVideoFilter::ThresholdVideoFilter(QObject *parent) :
-    VideoFilter(parent), m_threshold(0.0)
+ThresholdVideoFilter::ThresholdVideoFilter(QString name, QObject *parent) :
+    VideoFilter(name, parent), m_threshold(0.0)
 {
 
 }
 
 QVideoFilterRunnable *ThresholdVideoFilter::createFilterRunnable()
 {
-    if(!p_runnable)
-        p_runnable = new ThresholdRunnable(m_threshold);
+    qDebug() << "ThresholdVideoFilter::createFilterRunnable()";
 
-    return p_runnable;
+//    if(!p_runnable)
+//        p_runnable = new ThresholdRunnable(m_threshold);
+
+//    return p_runnable;
+    return p_runnable = new ThresholdRunnable(m_threshold);
 }
 
 double ThresholdVideoFilter::threshold()

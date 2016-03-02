@@ -1,16 +1,15 @@
 #ifndef RGB2GRAYVIDEOFILTER_H
 #define RGB2GRAYVIDEOFILTER_H
 
-#include <QAbstractVideoFilter>
-
+#include "videofilter.h"
 #include "rgb2grayrunnable.h"
 
-class RGB2GrayVideoFilter : public QAbstractVideoFilter
+class RGB2GrayVideoFilter : public VideoFilter
 {
 public:
-    RGB2GrayVideoFilter(QObject * parent = 0);
+    RGB2GrayVideoFilter(QString name, QObject * parent = 0);
 
-    QVideoFilterRunnable *createFilterRunnable() { return new Rgb2GrayRunnable; }
+    QVideoFilterRunnable *createFilterRunnable();
 
 signals:
     void finished(QObject *result);

@@ -8,6 +8,7 @@ class ThresholdRunnable : public QVideoFilterRunnable
 public:
     ThresholdRunnable();
     ThresholdRunnable(double threshold);
+    ~ThresholdRunnable();
 
     QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags);
     double threshold(){return m_threshold;}

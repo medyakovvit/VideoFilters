@@ -7,6 +7,7 @@ class Rgb2GrayRunnable : public QVideoFilterRunnable
 {
 public:
     Rgb2GrayRunnable();
+    ~Rgb2GrayRunnable();
     QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags);
 };
 

@@ -11,6 +11,11 @@ Rgb2GrayRunnable::Rgb2GrayRunnable()
 
 }
 
+Rgb2GrayRunnable::~Rgb2GrayRunnable()
+{
+    qDebug() << "Rgb2GrayRunnable d-tor";
+}
+
 QVideoFrame Rgb2GrayRunnable::run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, QVideoFilterRunnable::RunFlags flags)
 {
     Q_UNUSED(surfaceFormat);

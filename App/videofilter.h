@@ -6,12 +6,22 @@
 class VideoFilter : public QAbstractVideoFilter
 {
     Q_OBJECT
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 
 public:
-    VideoFilter(QObject *parent = 0);
+    VideoFilter(QString name, QObject *parent = 0);
     virtual ~VideoFilter();
 
+    QString name(){return m_name;}
+
+public slots:
+    void setName(QString name);
+
+signals:
+    void nameChanged(QString name);
+
 protected:
+    QString m_name;
     QVideoFilterRunnable *p_runnable;
 };
 

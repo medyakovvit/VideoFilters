@@ -1,17 +1,26 @@
 #include "videofilter.h"
 
-VideoFilter::VideoFilter(QObject *parent) : QAbstractVideoFilter(parent),
-    p_runnable(0)
+VideoFilter::VideoFilter(QString name, QObject *parent) : QAbstractVideoFilter(parent),
+    m_name(name)
 {
 
 }
 
 VideoFilter::~VideoFilter()
 {
-    if(p_runnable)
-    {
-        delete p_runnable;
-        p_runnable = 0;
-    }
+//    if(p_runnable)
+//    {
+//        delete p_runnable;
+//        p_runnable = 0;
+//    }
+}
+
+void VideoFilter::setName(QString name)
+{
+    if(m_name == name)
+        return;
+
+    m_name = name;
+    emit nameChanged(m_name);
 }
 
