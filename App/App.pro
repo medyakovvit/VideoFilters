@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     #matdata.cpp \
     rgb2grayvideofilter.cpp \
     rgb2grayrunnable.cpp \
-    thresholdrunnable.cpp
+    thresholdrunnable.cpp \
+    filtersmodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -28,5 +29,6 @@ HEADERS += \
     #matdata.h \
     rgb2grayvideofilter.h \
     rgb2grayrunnable.h \
-    thresholdrunnable.h
+    thresholdrunnable.h \
+    filtersmodel.h
 
