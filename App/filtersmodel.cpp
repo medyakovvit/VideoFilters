@@ -9,6 +9,8 @@ FiltersModel::FiltersModel(QObject *parent) : QAbstractListModel(parent)
 {
 
     m_roles.insert(NAME, "filterName");
+    m_roles.insert(QML_FILE, "qmlFile");
+    m_roles.insert(FILTER, "filter");
 
     m_filters.append(new RGB2GrayVideoFilter("rgb", this));
 }
@@ -24,7 +26,10 @@ QQmlListProperty<VideoFilter> FiltersModel::filters()
 
 void FiltersModel::addFilter()
 {
+    int pos = m_filters.size();
+    beginInsertRows(QModelIndex(), pos, pos);
     m_filters.append(new ThresholdVideoFilter("Thresh", this));
+    endInsertRows();
     emit filtersChanged(this->filters());
 }
 
@@ -45,6 +50,12 @@ QVariant FiltersModel::data(const QModelIndex &index, int role) const
     switch (role) {
     case NAME:
         return m_filters.at(index.row())->name();
+
+    case QML_FILE:
+        return m_filters.at(index.row())->qmlFile();
+
+    case FILTER:
+        return QVariant::fromValue(m_filters.at(index.row()));
 
     default:
         return QVariant();

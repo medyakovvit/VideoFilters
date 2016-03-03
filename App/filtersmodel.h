@@ -14,6 +14,8 @@ class FiltersModel : public QAbstractListModel
 
     enum{
         NAME = Qt::UserRole + 1,
+        QML_FILE,
+        FILTER
     };
 
 public:
