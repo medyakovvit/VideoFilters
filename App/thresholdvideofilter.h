@@ -2,7 +2,8 @@
 #define THRESHOLDVIDEOFILTER_H
 
 #include "videofilter.h"
-#include "thresholdrunnable.h"
+
+class ThresholdRunnable;
 
 class ThresholdVideoFilter : public VideoFilter
 {
@@ -25,7 +26,6 @@ signals:
 
 protected:
     double m_threshold;
-
 };
 
 #endif // THRESHOLDVIDEOFILTER_H

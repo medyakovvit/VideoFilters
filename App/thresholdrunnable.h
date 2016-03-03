@@ -3,19 +3,18 @@
 
 #include <QVideoFilterRunnable>
 
+#include "thresholdvideofilter.h"
+
 class ThresholdRunnable : public QVideoFilterRunnable
 {
 public:
-    ThresholdRunnable();
-    ThresholdRunnable(double threshold);
+    ThresholdRunnable(ThresholdVideoFilter* filter);
     ~ThresholdRunnable();
 
     QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags);
-    double threshold(){return m_threshold;}
-    void setThreshold(double threshold);
 
 protected:
-    double m_threshold;
+    ThresholdVideoFilter *pFilter;
 };
 
 #endif // THRESHOLDRUNNABLE_H
