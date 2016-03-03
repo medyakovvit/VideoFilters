@@ -6,7 +6,7 @@
 
 RGB2GrayVideoFilter::RGB2GrayVideoFilter(QString name, QObject *parent) : VideoFilter(name, parent)
 {
-
+    m_qmlFile = "Rgb2GrayPanel.qml";
 }
 
 QVideoFilterRunnable *RGB2GrayVideoFilter::createFilterRunnable()

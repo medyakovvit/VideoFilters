@@ -24,3 +24,12 @@ void VideoFilter::setName(QString name)
     emit nameChanged(m_name);
 }
 
+void VideoFilter::setQmlFile(QString file)
+{
+    if(m_qmlFile == file)
+        return;
+
+    m_qmlFile = file;
+    emit qmlFileChanged(m_qmlFile);
+}
+
