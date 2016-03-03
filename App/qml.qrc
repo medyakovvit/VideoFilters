@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>Rgb2GrayPanel.qml</file>
+        <file>ThresholdPanel.qml</file>
+        <file>FiltersListViewDelegate.qml</file>
     </qresource>
 </RCC>
-
